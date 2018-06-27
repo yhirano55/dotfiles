@@ -1,0 +1,25 @@
+set split-view-height = 80%
+
+##############################
+# キーバインド設定
+##############################
+
+# 参考サイト
+# http://qiita.com/yoshikazusawa/items/3eaa6db78fa348d38bfe
+# http://hiroki.jp/2012/05/30/4182/
+
+# git gcがGに割り振られているトラップカードを無効にする
+bind generic G none
+
+# 画面の上下移動をvim風に
+bind generic <Ctrl-B> move-page-up
+bind generic <Ctrl-F> move-page-down
+
+# 画面の末尾・先頭に移動をvim風に
+bind generic g move-first-line
+bind generic G move-last-line
+
+# 片手でgitのログを見れるように
+bind diff ; view-next
+bind diff l scroll-right
+bind diff h scroll-left

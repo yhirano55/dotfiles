@@ -1,0 +1,2 @@
+linked/.vim/bundle/*
+!linked/.vim/bundle/.keep

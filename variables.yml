@@ -1,0 +1,95 @@
+---
+atom_package_names:
+- atom-beautify
+- atom-material-ui
+- autocomplete-ruby
+- convert-to-utf8
+- ex-mode
+- file-icons
+- japanese-menu
+- language-slim
+- language-plantuml
+- minimap
+- plantuml-viewer
+- pretty-json
+- sort-lines
+- vim-mode
+- vim-mode-visual-block
+
+dotdirs:
+- ".vim/plugins"
+- ".vim/userautoload"
+- ".zsh/functions"
+
+dotfiles:
+- ".atom/styles.less"
+- ".bundle/config"
+- ".gemrc"
+- ".gitconfig"
+- ".gitignore_global"
+- ".pryrc"
+- ".rbenv/default-gem"
+- ".rspec"
+- ".tigrc"
+- ".tmux.conf"
+- ".vimrc"
+- ".zshrc"
+- "Library/Preferences/com.googlecode.iterm2.plist"
+
+homebrew_cask_package_names:
+- alfred
+- appcleaner
+- atom
+- dash
+- docker
+- docker-toolbox
+- firefox
+- google-chrome
+- google-japanese-ime
+- iterm2
+- licecap
+- sequel-pro
+- slack
+- sourcetree
+- vagrant
+- virtualbox
+- xquartz
+
+homebrew_package_names:
+- ag
+- ansible
+- caskroom/cask/brew-cask
+- cmake
+- direnv
+- go
+- graphviz
+- heroku-toolbelt
+- hub
+- icu4c
+- imagemagick
+- jq
+- lua
+- motemen/ghq/ghq
+- nodebrew
+- openssl
+- peco
+- postgresql
+- pstree
+- q
+- qt4
+- rbenv
+- rbenv-default-gems
+- rbenv-gem-rehash
+- readline
+- reattach-to-user-namespace
+- redis
+- ruby-build
+- sqlite
+- tmux
+- trash
+- tree
+- wget
+- yarn
+- z
+- zsh
+- zsh-completions

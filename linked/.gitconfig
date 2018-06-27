@@ -1,0 +1,47 @@
+[user]
+	name  = Yoshiyuki Hirano
+	email = yhirano@me.com
+
+[include]
+  path = .gitconfig.local
+
+[github]
+  user = yhirano55
+
+[color]
+  diff        = auto
+  grep        = auto
+  branch      = auto
+  status      = auto
+  interactive = auto
+
+[merge]
+  ff = false
+
+[pull]
+  rebase = true
+
+[push]
+  default = current
+
+[core]
+  excludesfile = ~/.gitignore_global
+  editor = vim
+
+[alias]
+  br = branch
+  co = checkout
+
+[ghq]
+  root = ~/src
+
+[difftool "sourcetree"]
+  cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+  path =
+
+[mergetool "sourcetree"]
+  md = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+  rustExitCode = true
+
+[commit]
+  emplate = /Users/yhirano/.stCommitMsg

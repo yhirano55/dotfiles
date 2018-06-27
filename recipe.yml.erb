@@ -1,0 +1,121 @@
+---
+resources:
+- type: command
+  script: brew update
+
+<%- homebrew_package_names.each do |homebrew_package_name| -%>
+- type: homebrew_package
+  name: <%= homebrew_package_name %>
+<%- end -%>
+
+- type: homebrew_package
+  name: vim
+  options: --with-lua
+
+<%- %w(mysql postgresql redis).each do |db| -%>
+- type: symlink
+  destination: /usr/local/opt/<%= db %>/*.plist
+  source: /Users/<%= ENV["USER"] %>/Library/LaunchAgents
+<%- end -%>
+
+<%- homebrew_cask_package_names.each do |homebrew_cask_package_name| -%>
+- type: homebrew_cask_package
+  name: <%= homebrew_cask_package_name %>
+<%- end -%>
+
+<%- atom_package_names.each do |atom_package_name| -%>
+- type: atom_package
+  name: <%= atom_package_name %>
+<%- end -%>
+
+- type: git
+  repository: https://github.com/yhirano55/dotfiles.git
+  path: /Users/<%= ENV["USER"] %>/go/src/github.com/yhirano55/dotfiles
+  status: updated
+
+- type: symlink
+  destination: /Users/<%= ENV["USER"] %>/go/src/github.com/yhirano55/dotfiles
+  source: /Users/<%= ENV["USER"] %>/dotfiles
+
+<%- %w(.atom .bundle .vim .zsh).each do |dir| -%>
+- type: directory
+  path: /Users/<%= ENV["USER"] %>/<%= dir %>
+  mode: 0755
+  owner: <%= ENV["USER"] %>
+<%- end -%>
+
+<%- dotfiles.each do |path| -%>
+- type: symlink
+  destination: /Users/<%= ENV["USER"] %>/go/src/github.com/yhirano55/dotfiles/linked/<%= path %>
+  source: /Users/<%= ENV["USER"] %>/<%= path %>
+<%- end -%>
+
+<%- dotdirs.each do |path| -%>
+- type: symlink
+  destination: /Users/<%= ENV["USER"] %>/go/src/github.com/yhirano55/dotfiles/linked/<%= path %>/
+  source: /Users/<%= ENV["USER"] %>/<%= path %>
+<%- end -%>
+
+- type: command
+  check_script: "finger -l | grep -E 'Shell: /usr/local/bin/zsh$'"
+  script: sudo chsh -s /usr/local/bin/zsh <%= ENV["USER"] %>
+
+- type: rbenv_ruby
+  version: 2.5.1
+  global: true
+
+- type: command
+  check_script: "which nodebrew > /dev/null"
+  script: "mkdir -p /Users/<%= ENV["USER"] %>/.nodebrew/src && nodebrew selfupdate && nodebrew install-binary stable && nodebrew use stable"
+
+- type: command
+  check_script: "which npm > /dev/null"
+  script: npm install -g npm
+
+- type: defaults
+  domain: com.apple.dock
+  key: autohide
+  value: 1
+  notify:
+  - restart_dock
+
+- type: defaults
+  domain: com.apple.dock
+  key: persistent-apps
+  value: []
+  notify:
+  - restart_dock
+
+- type: defaults
+  domain: com.apple.dock
+  key: persistent-others
+  value: []
+  notify:
+  - restart_dock
+
+- type: defaults
+  key: com.apple.sound.beep.feedback
+  value: 1
+
+- type: git
+  repository: https://github.com/Shougo/neobundle.vim
+  path: /Users/<%= ENV["USER"] %>/.vim/bundle/neobundle.vim
+  status: updated
+
+- type: git
+  repository: https://github.com/ryoppy/cool-peco.git
+  path: /Users/<%= ENV["USER"] %>/go/src/github.com/ryoppy/cool-peco
+  status: updated
+
+handlers:
+- id: restart_dock
+  type: command
+  script: killall Dock
+
+- id: restart_finder
+  type: command
+  script: killall Finder
+
+- id: restart_system_ui_server
+  type: command
+  script: killall SystemUIServer
